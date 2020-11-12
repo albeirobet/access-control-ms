@@ -1,0 +1,363 @@
+{
+	"info": {
+		"_postman_id": "7dbf7652-12c8-4ec0-ba0b-e49517f4a3ab",
+		"name": "Access Control MS",
+		"description": "Postman Collection of Microservice to control access and security of applications developed by RunCode Ingeniería SAS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SignUp User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5bb35325-eafe-4e28-a331-4cfaf97edba9",
+						"exec": [
+							"pm.environment.set(\"jwt\", pm.response.json().data.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Eyder Ascuntar\",\r\n    \"email\":\"eaar23@gmail.com\",\r\n    \"password\":\"test1234\",\r\n    \"passwordConfirm\":\"test1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}api/v1/users/signup",
+					"host": [
+						"{{URL}}api"
+					],
+					"path": [
+						"v1",
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LogIn User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cfc75615-7266-40df-a16c-089804afc89d",
+						"exec": [
+							"pm.environment.set(\"jwt\", pm.response.json().data.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"eaar23@gmail.com\",\r\n    \"password\":\"test1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}api/v1/users/login",
+					"host": [
+						"{{URL}}api"
+					],
+					"path": [
+						"v1",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Forgot Password User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"email\":\"eyder.ascuntar@runcode.co\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}api/v1/users/forgotPassword",
+					"host": [
+						"{{URL}}api"
+					],
+					"path": [
+						"v1",
+						"users",
+						"forgotPassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reset Password User",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"password\": \"2421eaar\",\r\n    \"passwordConfirm\": \"2421eaar\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}api/v1/users/resetPassword/1504dc8551c6aacf779c3ce5b2a132a7926942d3cfdc6489b6e64066785d000c",
+					"host": [
+						"{{URL}}api"
+					],
+					"path": [
+						"v1",
+						"users",
+						"resetPassword",
+						"1504dc8551c6aacf779c3ce5b2a132a7926942d3cfdc6489b6e64066785d000c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Password User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"_id\": \"5f7801398c9bc517780e4246\",\r\n    \"passwordCurrent\": \"2421eaars\",\r\n     \"password\": \"2421eaar\",\r\n    \"passwordConfirm\": \"2421eaar\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}api/v1/users/updatePassword",
+					"host": [
+						"{{URL}}api"
+					],
+					"path": [
+						"v1",
+						"users",
+						"updatePassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}api/v1/users/getUser/5f7801398c9bc517780e4246",
+					"host": [
+						"{{URL}}api"
+					],
+					"path": [
+						"v1",
+						"users",
+						"getUser",
+						"5f7801398c9bc517780e4246"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}api/v1/users/getAllUsers",
+					"host": [
+						"{{URL}}api"
+					],
+					"path": [
+						"v1",
+						"users",
+						"getAllUsers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"_id\": \"5f7801398c9bc517780e4246\",\r\n    \"role\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}api/v1/users/updateUser",
+					"host": [
+						"{{URL}}api"
+					],
+					"path": [
+						"v1",
+						"users",
+						"updateUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}api/v1/users/getAllUsers",
+					"host": [
+						"{{URL}}api"
+					],
+					"path": [
+						"v1",
+						"users",
+						"getAllUsers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Users With Filter, Pagination, Limit Fields",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}api/v1/users/getAllUsers?fields=name&page=1&limit=2&sort=-role&role=admin",
+					"host": [
+						"{{URL}}api"
+					],
+					"path": [
+						"v1",
+						"users",
+						"getAllUsers"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "name"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "2"
+						},
+						{
+							"key": "sort",
+							"value": "-role"
+						},
+						{
+							"key": "role",
+							"value": "admin"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
